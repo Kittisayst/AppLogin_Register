@@ -1,6 +1,7 @@
 
 package View;
-
+//1. ນຳເຂົ້າຄຳສັງ SQL
+import java.sql.*;
 import MyDatabase.ConnectDB;
 
 
@@ -10,6 +11,23 @@ public class frm_Login extends javax.swing.JFrame {
     public frm_Login() {
         initComponents();
         ConnectDB.checkDB();
+        //2. ຂຽນດັບຈັດ error (try catch)
+        try {
+            //3. ສ້າງຕົວປ່ຽນກັບຄຳສັ່ງ sql
+            String sql="SELECT * FROM tb_user";
+            //4. ສ້າງຕົວປ່ຽນກັບຂໍ້ມູນ (Resultset) sql
+            Connection c =ConnectDB.getDB();
+            ResultSet rs = c.prepareStatement(sql).executeQuery();
+            //5 ກວດສອບຂໍ້ມູນດ້ວຍ loop while
+            while (rs.next()) {                
+                //6 ໃຊ້ Method ຂອງ Resultset (getString(ຊື່Column)) ດຶງຂໍ້ມູນ
+                System.out.println(rs.getString("User"));
+                System.out.println(rs.getString("Psaaword"));
+                System.out.println(rs.getString("UserID"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -38,7 +56,7 @@ public class frm_Login extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/myIcon.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 170, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 400, 50));
 
         jLabel2.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
         jLabel2.setText("ຜູ້ໃຊ້ງານ");
@@ -50,24 +68,24 @@ public class frm_Login extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 400, 60));
 
         jTextField1.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 390, 40));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 410, 40));
 
         jLabel4.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
         jLabel4.setText("ນັກພັດທະນາ LTVC");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 510, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
         jButton2.setText("ສະແດງ");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 70, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 70, 40));
 
         jPasswordField1.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 320, 40));
+        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 340, 40));
 
         jButton1.setBackground(new java.awt.Color(69, 161, 88));
         jButton1.setFont(new java.awt.Font("Phetsarath OT", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("ລົງທະບຽນ");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 390, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 410, 50));
 
         jLabel5.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
         jLabel5.setText("ລະຫັດຜ່ານ");
@@ -81,7 +99,7 @@ public class frm_Login extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Phetsarath OT", 0, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("ເຂົ້າສູ່ລະບົບ");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 390, 50));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 410, 50));
 
         setSize(new java.awt.Dimension(514, 607));
         setLocationRelativeTo(null);
