@@ -1,25 +1,23 @@
-
 package View;
 //1. ນຳເຂົ້າຄຳສັງ SQL
+
 import java.sql.*;
 import MyDatabase.ConnectDB;
 
-
 public class frm_Login extends javax.swing.JFrame {
 
-    
     public frm_Login() {
         initComponents();
         ConnectDB.checkDB();
         //2. ຂຽນດັບຈັດ error (try catch)
         try {
             //3. ສ້າງຕົວປ່ຽນກັບຄຳສັ່ງ sql
-            String sql="SELECT * FROM tb_user";
+            String sql = "SELECT * FROM tb_user";
             //4. ສ້າງຕົວປ່ຽນກັບຂໍ້ມູນ (Resultset) sql
-            Connection c =ConnectDB.getDB();
+            Connection c = ConnectDB.getDB();
             ResultSet rs = c.prepareStatement(sql).executeQuery();
             //5 ກວດສອບຂໍ້ມູນດ້ວຍ loop while
-            while (rs.next()) {                
+            while (rs.next()) {
                 //6 ໃຊ້ Method ຂອງ Resultset (getString(ຊື່Column)) ດຶງຂໍ້ມູນ
                 System.out.println(rs.getString("User"));
                 System.out.println(rs.getString("Psaaword"));
@@ -42,14 +40,14 @@ public class frm_Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtuser = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnshow = new javax.swing.JButton();
+        txtpassword = new javax.swing.JPasswordField();
+        btnRegister = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,25 +65,25 @@ public class frm_Login extends javax.swing.JFrame {
         jLabel3.setText("ຍິນດີຕ້ອນຮັບ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 400, 60));
 
-        jTextField1.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 410, 40));
+        txtuser.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
+        getContentPane().add(txtuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 410, 40));
 
         jLabel4.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
         jLabel4.setText("ນັກພັດທະນາ LTVC");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 510, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
-        jButton2.setText("ສະແດງ");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 70, 40));
+        btnshow.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
+        btnshow.setText("ສະແດງ");
+        getContentPane().add(btnshow, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 70, 40));
 
-        jPasswordField1.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 340, 40));
+        txtpassword.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
+        getContentPane().add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 340, 40));
 
-        jButton1.setBackground(new java.awt.Color(69, 161, 88));
-        jButton1.setFont(new java.awt.Font("Phetsarath OT", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("ລົງທະບຽນ");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 410, 50));
+        btnRegister.setBackground(new java.awt.Color(69, 161, 88));
+        btnRegister.setFont(new java.awt.Font("Phetsarath OT", 0, 18)); // NOI18N
+        btnRegister.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegister.setText("ລົງທະບຽນ");
+        getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 410, 50));
 
         jLabel5.setFont(new java.awt.Font("Phetsarath OT", 0, 14)); // NOI18N
         jLabel5.setText("ລະຫັດຜ່ານ");
@@ -95,15 +93,51 @@ public class frm_Login extends javax.swing.JFrame {
         jLabel6.setText("version 0.0.1");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(32, 137, 193));
-        jButton3.setFont(new java.awt.Font("Phetsarath OT", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("ເຂົ້າສູ່ລະບົບ");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 410, 50));
+        btnLogin.setBackground(new java.awt.Color(32, 137, 193));
+        btnLogin.setFont(new java.awt.Font("Phetsarath OT", 0, 18)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("ເຂົ້າສູ່ລະບົບ");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 410, 50));
 
         setSize(new java.awt.Dimension(514, 607));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        //2. ດັກຈັບ error (try catch)
+        try {
+            //3. ດຶງຂໍ້ມູນຈາກ textfield (user,password)
+            String user, password;
+            user = txtuser.getText();
+            password = txtpassword.getText();
+            //4. ຂຽນຄຳສັ່ງ sql
+            String sql = "SELECT * FROM tb_user WHERE User=? AND Psaaword=?";
+            //5. ເຊື່ອມຕໍ່ຖານຂໍ້ມູນ
+            Connection c = ConnectDB.getDB();
+            //6 ດຶງຂໍ້ມູນຈາກຖານຂໍ້ມູນ
+            //6.1 ແທນຄ່າ user,password ໃສ່ຄຳສັ່ງ sql
+            PreparedStatement pre = c.prepareStatement(sql);
+            pre.setString(1, user);
+            pre.setString(2, password);
+            //6.2 ເກັບຂໍ້ມູນໄວ້ທີ Resultset
+            ResultSet rs = pre.executeQuery();
+            //7. ກວດສອບການ Login (IF)
+            if (rs.next()) {
+              //Login ສຳເລັດ
+                System.out.println("Success");
+            }else{
+            //Login ບໍ່ສຳເລັດ
+                System.out.println("not user password");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,16 +175,16 @@ public class frm_Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JButton btnshow;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtpassword;
+    private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }
